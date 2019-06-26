@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="app">
+      <div v-bind:index="arr[0].name"></div>
+      <!-- 数组 -->
+      <ul>
+        <li v-for="(item,index) in arr" v-bind:key="index">
+          {{ index }}， 名字：{{ item.name }}， 年龄：{{ item.age }}
+        </li>
+      </ul>
+      <!-- 对象 -->
+      <ul>
+        <li v-for="(item,key) in obj" :key="key">
+          名字：{{ key }}，年龄：{{ item }}
+        </li>
+      </ul>
+      <!-- 字符串 -->
+      <ul>
+        <li v-for="(item,index) in str" :key="index">-{{ item }}</li>
+      </ul>
+      <!-- 数字 -->
+      <!-- v-for指令除了常规循环数组、对象外，还可以循环字符串和数字，需要注意的是，循环数字时默认从1开始。 -->
+      <ul>
+        <li v-for="index in 5" :key="index">{{ index }}</li>
+      </ul>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          // 数组
+          arr: [
+            { name: 'zs', age: 18 },
+            { name: 'ls', age: 19 },
+            { name: 'ww', age: 20 },
+            { name: 'zl', age: 21 }
+          ],
+          // 对象
+          obj: {
+            zs: 18,
+            ls: 19,
+            ww: 20,
+            zl: 21
+          },
+          // 字符串
+          str: 'Vuejs Tutorial'
+        }
+      })
+      /* key属性，在标签中不可见，在数据更新时，Vue会先在虚拟DOM中判断将要修改的内容，也可以在积累一定更新之后，再一次性渲染到页面中，这样可以减少页面渲染的次数，增加性能。
+假设我们有一个数组的数据，在我们进行增删改查操作时，我们不希望进行每次操作的时候，将整个列表全部重新渲染，而Vue很难判断我们操作的是哪个item。
+例如我们将items[1]替换成其他值，Vue很难判断它是否被替换。当然Vue内部会生成一个key值，但这个值与我们传入的数据无关，因此需要我们提供一个id进行判断。
+同时为了保证数据的唯一性，key必须是唯一的，且不可改变。 */
+    </script>
+  </body>
+</html>

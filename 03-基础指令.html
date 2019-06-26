@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-model指令的作用是双向绑定数据，它只能用于输入组件，如input、textarea、select、radio等。 需要注意的是，通过v-model绑定的数据都为字符串。 -->
+      <input type="text" v-model="name" />
+      <div>{{ name }}</div>
+      <!-- 双向绑定复杂模式 -->
+      <!-- e.target为目标元素 -->
+      <!--    <input type="text" :value="name" @input="inputHandler" /> -->
+      <!-- <input type="text" :value="name" @input="e => name = e.targrt.value" /> -->
+
+      <!-- v-text与{{}}效果相同，如果传入的是标签会直接转换为字符串输出。 v-html相当于innerHtml，会将传入的字符串转换成HTML输出。 -->
+      <!-- v-text -->
+      <div v-text="t1"></div>
+      <!-- v-html -->
+      <div v-html="t1"></div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          name: '你好',
+          t1: '<p>你也好啊</p>'
+        },
+        methods: {
+          inputHandler(e) {
+            this.name = e.target.value
+          }
+        }
+      })
+      vm.name = 'hello'
+    </script>
+  </body>
+</html>

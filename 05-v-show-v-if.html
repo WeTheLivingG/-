@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+      .box {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+      }
+      .box2 {
+        width: 100px;
+        height: 100px;
+        background-color: pink;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <!-- v-show通过控制样式的display: none;和display: block;，实现显示隐藏。 v-if是直接添加和删除该元素，如果有的元素即使display: none;后还是会对页面效果有影响，建议使用v-if。 -->
+      <button v-on:click="onClick()">显示隐藏</button>
+      <div class="box" v-show="show"></div>
+      <div class="box2" v-if="show"></div>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app', // 根元素或挂载点。
+        data: {
+          show: true
+        },
+        methods: {
+          onClick() {
+            this.show = !this.show
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

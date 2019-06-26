@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- 通过v-bind:class/style设置属性，值要是已有的变量，自己随便打的不行 -->
+    <div id="app">
+      <!-- 字符串：全部显示 -->
+      <div :class="classStr"></div>
+
+      <!-- 数组的：全部添加 -->
+      <div :class="classArr"></div>
+
+      <!-- 对象的：值为false的不会添加到标签 -->
+      <div :class="classObj"></div>
+
+      <!-- 字符串的：全部生效 -->
+      <div :style="styleStr"></div>
+
+      <!-- 对象的：全部生效 -->
+      <div :style="styleObj"></div>
+
+      <!-- 数组的：全部生效,多个对象需要存入数组 -->
+      <div :style="[styleObj, styleObj2]"></div>
+    </div>
+
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app', // 根元素或挂载点。
+        data: {
+          name: 'lee',
+          age: 18,
+          classStr: 'class1 class2 class3',
+          classArr: ['class1', 'class2', 'class3'],
+          classObj: {
+            // 为false的属性将不会被渲染到标签中
+            class1: true,
+            class2: true,
+            class3: false
+          },
+          styleStr: 'display: block; height: 20px; background-color: red;',
+          styleObj: {
+            display: 'block',
+            height: '20px',
+            backgroundColor: 'blue'
+          },
+          styleObj2: {
+            width: '200px',
+            margin: '0 auto'
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

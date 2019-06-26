@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <div>
+        <!-- {{小胡子语法}}语法，也叫插值表达式，调用数据，支持简单计算 -->
+        {{ name }}
+
+        <!-- 调用复杂方法，简单方法可以在调用数据时书写，this始终指向vm，无论是方法中还是调用中 -->
+        {{ this.getBirth() }}
+      </div>
+
+      <!-- 设置属性及值，可简写为，:title="age +'岁'" -->
+      <span v-bind:title="age +'岁'">{{ name }}</span>
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app', //根元素或挂靠点
+        data: {
+          name: 'gao',
+          age: 18
+        },
+        methods: {
+          getBirth() {
+            return new Date().getFullYear() - this.age
+          }
+        }
+      })
+    </script>
+  </body>
+</html>

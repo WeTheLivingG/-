@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app">
+      <!-- 通过v-on指令添加事件，如v-on:click="onClick(1)"，表示添加的是click事件，同时传入1作为参数。 v-on:click="onClick(1)"也可以简写为@click="onClick(1)"。 -->
+      <!-- 事件对象，如果函数中有用到事件对象，在html中直接写函数名就可以fn，如果在html中需要用到，则传入fn($event)。e不能当做参数传入 -->
+      <!-- 
+      @事件名称，修饰符名称="事件处理函数" 
+      (1)阻止冒泡：@click.stop="fn"
+      (2)阻止默认事件：@click.prevent="fn"
+      (3)事件在捕获阶段触发：capture
+      (4)给谁加就只有谁会触发：self
+      (5)只会触发一次，如点击事件，再点击不在生效：once
+      (6)提升移动端的性能，。。。。：passive
+      事件修饰符可以写多个，链式编程
+      -->
+      <!-- 
+        按键修饰符
+        @keyup.enter回车键生效
+        tab
+        delete
+        esc
+        space
+        up
+        down
+        left
+        right
+        也可以直接.按键码
+        也可以自定义：Vue.config.keyCodes.ctrl = 17;
+       -->
+      <button v-on:click="fn(3)" @mouseout="fn(1)">+1</button>
+      {{ num }}
+    </div>
+    <script src="vue.js"></script>
+    <script>
+      let vm = new Vue({
+        el: '#app',
+        data: {
+          num: 1,
+          show: true
+        },
+        methods: {
+          fn(add) {
+            this.num = this.num + add
+          }
+        }
+      })
+    </script>
+  </body>
+</html>
